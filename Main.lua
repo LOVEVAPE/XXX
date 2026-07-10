@@ -6,7 +6,7 @@ if getgenv().LunarVape then
 end
 
 if identifyexecutor then
-  if table.find({ 'Xeno' }, (identifyexecutor())) then
+  if false and table.find({ 'Xeno' }, (identifyexecutor())) then
     game:GetService('Players').LocalPlayer:Kick [[don't use xeno, it's skidded 😘]]
     task.wait(0.4)
     while true do
@@ -88,7 +88,7 @@ local function finishLoading()
         if getgenv().LunarVapeDeveloper then
           loadstring(readfile('Lunar Vape/Loader.lua'), 'Lunar Vape/Loader.lua')()
         else
-          loadstring(game:HttpGet('https://raw.githubusercontent.com/AtTheZenith/LunarVape/main/Loader.lua', true), 'Lunar Vape/Loader.lua')()
+          loadstring(game:HttpGet('https://raw.githubusercontent.com/LOVEVAPE/LunarVape/main/Loader.lua', true), 'Lunar Vape/Loader.lua')()
         end
         ]]
         if getgenv().LunarVapeDeveloper then
