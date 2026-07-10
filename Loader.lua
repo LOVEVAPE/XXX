@@ -1,4 +1,4 @@
-if true then
+if false then
   cloneref(game:GetService 'Players').LocalPlayer:Kick("Lunar Vape is discontinued.\nDo not use exploits.")
 end
 
