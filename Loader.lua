@@ -99,7 +99,7 @@ local function downloadFile(path, func)
     local suc, res = pcall(function()
       return game:HttpGet(
         ('https://raw.githubusercontent.com/LOVEVAPE/XXX/'
-          .. (isfile 'Lunar Vape/Profiles/Commit.txt' and readfile 'Lunar Vape/Profiles/Commit.txt' or 'master')
+          .. (isfile 'Lunar Vape/Profiles/Commit.txt' and readfile 'Lunar Vape/Profiles/Commit.txt' or 'main')
           .. '/'
           .. (string.gsub(path, 'Lunar Vape/', ''))):gsub(' ', '%%20'),
         true
@@ -160,11 +160,24 @@ for _, folder in folders do
 end
 
 if not getgenv().LunarVapeDeveloper then
-  local _, subbed = pcall(function()
-    return game:HttpGet 'https://github.com/LOVEVAPE/XXX'
+  local commit
+  local httpService = game:GetService 'HttpService'
+  local ok, response = pcall(function()
+    return game:HttpGet('https://api.github.com/repos/LOVEVAPE/XXX/commits/main', true)
   end)
-  local commit = subbed:find 'currentOid'
-  commit = commit and subbed:sub(commit + 13, commit + 52) or nil
+  if ok and response then
+    local suc, decoded = pcall(function()
+      return httpService:JSONDecode(response)
+    end)
+    commit = suc and decoded and decoded.sha
+  end
+  if not commit then
+    local _, subbed = pcall(function()
+      return game:HttpGet 'https://github.com/LOVEVAPE/XXX'
+    end)
+    local commitIndex = subbed and subbed:find 'currentOid'
+    commit = commitIndex and subbed:sub(commitIndex + 13, commitIndex + 52) or nil
+  end
   commit = commit and #commit == 40 and commit or 'main'
   if
     commit == 'main'
