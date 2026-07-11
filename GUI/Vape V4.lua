@@ -29,9 +29,19 @@ if identifyexecutor then
   executorNameLower = string.lower(executorName)
 end
 if executorNameLower ~= '' then
-  if table.find({ 'velocity', 'zenith', 'volcano', 'delta', 'hydrogen', 'solara', 'volt', 'cryptic-windows', 'potassium' }, executorNameLower) then
-    mainapi.ThreadFix = false
-  end
+  if executorNameLower:find('velocity')
+    or executorNameLower:find('zenith')
+    or executorNameLower:find('volcano')
+    or executorNameLower:find('delta')
+    or executorNameLower:find('hydrogen')
+    or executorNameLower:find('solara')
+  or executorNameLower:find('medium')
+  or executorNameLower:find('volt')
+  or executorNameLower:find('cryptic-windows')
+  or executorNameLower:find('potassium')
+then
+  mainapi.ThreadFix = false
+end
 end
 
 local cloneref = cloneref or function(obj)
