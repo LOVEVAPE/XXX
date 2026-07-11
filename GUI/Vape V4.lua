@@ -6,7 +6,7 @@ local mainapi = {
     Value = 0.82,
   },
   HeldKeybinds = {},
-  Keybind = { 'RightShift' },
+  Keybind = { 'M' },
   Loaded = false,
   Libraries = {},
   Modules = {},
@@ -23,8 +23,13 @@ local mainapi = {
   Windows = {},
 }
 
+local executorNameLower = ''
 if identifyexecutor then
-  if table.find({ 'Velocity', 'Zenith', 'Volcano', 'Delta', 'Hydrogen', 'Solara', 'Volt', 'Cryptic-Windows', 'Potassium' }, (identifyexecutor())) then
+  local executorName = tostring(identifyexecutor()):gsub('^%s*(.-)%s*$', '%1')
+  executorNameLower = string.lower(executorName)
+end
+if executorNameLower ~= '' then
+  if table.find({ 'velocity', 'zenith', 'volcano', 'delta', 'hydrogen', 'solara', 'volt', 'cryptic-windows', 'potassium' }, executorNameLower) then
     mainapi.ThreadFix = false
   end
 end
