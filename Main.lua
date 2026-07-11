@@ -6,7 +6,7 @@ if getgenv().LunarVape then
 end
 
 if identifyexecutor then
-  if false and table.find({ 'Xeno' }, (identifyexecutor())) then
+  if false and table.find({ 'xeno' }, string.lower(tostring(identifyexecutor()))) then
     game:GetService('Players').LocalPlayer:Kick [[don't use xeno, it's skidded 😘]]
     task.wait(0.4)
     while true do
@@ -19,13 +19,14 @@ local LunarVape
 
 local queue_on_teleport = queue_on_teleport or function() end
 
-local executorName = identifyexecutor and identifyexecutor() or ''
-local executorNameLower = string.lower(tostring(executorName))
+local executorName = identifyexecutor and tostring(identifyexecutor()):gsub('^%s*(.-)%s*$', '%1') or ''
+local executorNameLower = string.lower(executorName)
 
+local global_loadstring = loadstring
 -- compatibility fixes for executors with stricter loadstring behavior
-local loadstring = (executorNameLower == 'hydrogen' or executorNameLower == 'solara') and loadstring or function(script, name)
+local loadstring = (executorNameLower:find('hydrogen') or executorNameLower:find('solara')) and global_loadstring or function(script, name)
   print(name)
-  local res, err = loadstring(script, name)
+  local res, err = global_loadstring(script, name)
   if err then
     error(err)
   end
