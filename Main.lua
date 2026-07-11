@@ -19,8 +19,11 @@ local LunarVape
 
 local queue_on_teleport = queue_on_teleport or function() end
 
--- test fix for hydrogen lol
-local loadstring = identifyexecutor() == 'Hyrdrogen' and loadstring or function(script, name)
+local executorName = identifyexecutor and identifyexecutor() or ''
+local executorNameLower = string.lower(tostring(executorName))
+
+-- compatibility fixes for executors with stricter loadstring behavior
+local loadstring = (executorNameLower == 'hydrogen' or executorNameLower == 'solara') and loadstring or function(script, name)
   print(name)
   local res, err = loadstring(script, name)
   if err then
