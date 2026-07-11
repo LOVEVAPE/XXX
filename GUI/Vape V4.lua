@@ -6,7 +6,7 @@ local mainapi = {
     Value = 0.82,
   },
   HeldKeybinds = {},
-  Keybind = { 'M' },
+  Keybind = { 'RightShift' },
   Loaded = false,
   Libraries = {},
   Modules = {},
@@ -24,7 +24,7 @@ local mainapi = {
 }
 
 if identifyexecutor then
-  if table.find({ 'Velocity', 'Zenith', 'Volcano', 'Delta', 'Hydrogen', 'Volt', 'Cryptic-Windows', 'Potassium' }, (identifyexecutor())) then
+  if table.find({ 'Velocity', 'Zenith', 'Volcano', 'Delta', 'Hydrogen', 'Solara', 'Volt', 'Cryptic-Windows', 'Potassium' }, (identifyexecutor())) then
     mainapi.ThreadFix = false
   end
 end
